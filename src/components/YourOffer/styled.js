@@ -5,6 +5,9 @@ const useStyles = makeStyles({
         textAlign: "center",
         fontWeight: "bold",
         color: "#054752",
+        "@media(max-width: 767px)": {
+            textAlign: "left",
+        },
     },
     rideItem: {
         borderRadius: "16px",
@@ -39,7 +42,7 @@ const useStyles = makeStyles({
     routeListItem: {
         padding: "0 16px",
         position: "relative",
-        "& ::before": {
+        "&::before": {
             content: "''",
             width: "10px",
             height: "10px",

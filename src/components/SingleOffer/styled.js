@@ -5,6 +5,9 @@ const useStyles = makeStyles({
         textAlign: "center",
         fontWeight: "bold",
         color: "#054752",
+        "@media(max-width: 767px)": {
+            textAlign: "left",
+        },
     },
     rideItem: {
         borderRadius: "16px",
@@ -33,18 +36,19 @@ const useStyles = makeStyles({
             backgroundColor: "#054752",
             position: "absolute",
             top: "50%",
-            left: 3,
+            left: 63,
             transform: "translateY(-50%)",
         },
     },
     routeListItem: {
         padding: "2px 16px",
+        paddingLeft: "75px",
         position: "relative",
         cursor: "pointer",
         "&:hover": {
             backgroundColor: "#F1F1F1",
         },
-        "& ::before": {
+        "&::before": {
             content: "''",
             width: "10px",
             height: "10px",
@@ -53,10 +57,17 @@ const useStyles = makeStyles({
             borderRadius: "50%",
             position: "absolute",
             top: "50%",
-            left: 0,
+            left: 60,
             transform: "translateY(-50%)",
             zIndex: 99,
         },
+    },
+    rideTime: {
+        fontWeight: "bold",
+        color: "#054752",
+        position: "absolute",
+        top: 6,
+        left: 0,
     },
     routeListItemText: {
         "& .MuiTypography-root": {

@@ -14,7 +14,7 @@ import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 const SingleOffer = () => {
     const classes = useStyles();
     return (
-        <Box my={5}>
+        <Box my={5} px={2}>
             <Typography variant="h4" className={classes.title}>
                 Ride Plan
             </Typography>
@@ -31,11 +31,20 @@ const SingleOffer = () => {
 
                         <List className={classes.routeList}>
                             <ListItem className={classes.routeListItem}>
+                                <Typography
+                                    variant="h6"
+                                    className={classes.rideTime}
+                                >
+                                    08:00
+                                </Typography>
                                 <ListItemText
                                     className={classes.routeListItemText}
                                 >
                                     <Typography variant="h6">Agra</Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        className={classes.route}
+                                    >
                                         Agra, Uttar Pradesh
                                     </Typography>
                                 </ListItemText>
@@ -45,11 +54,20 @@ const SingleOffer = () => {
                                 />
                             </ListItem>
                             <ListItem className={classes.routeListItem}>
+                                <Typography
+                                    variant="h6"
+                                    className={classes.rideTime}
+                                >
+                                    08:00
+                                </Typography>
                                 <ListItemText
                                     className={classes.routeListItemText}
                                 >
                                     <Typography variant="h6">Agra</Typography>
-                                    <Typography variant="body2">
+                                    <Typography
+                                        variant="body2"
+                                        className={classes.route}
+                                    >
                                         Agra, Uttar Pradesh
                                     </Typography>
                                 </ListItemText>
