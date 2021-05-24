@@ -21,14 +21,32 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     rideItemContent: {
-        padding: "8px 15px",
+        padding: "10px 15px !important",
     },
-    rideItemTimeDate: {
-        fontWeight: "bold",
-        color: "#054752",
+    routeWalkDistance: {},
+    routeWalkDistanceIcon: {
+        fontSize: 20,
+        backgroundColor: "#EDEDED",
+        color: "#FFFFFF",
+        padding: 2,
+        borderRadius: "50%",
+        marginRight: 3,
+        "&:last-child": {
+            marginRight: 0,
+        },
+    },
+    routeWalkDistanceShort: {
+        backgroundColor: "#5DD167",
+    },
+    routeWalkDistanceMedium: {
+        backgroundColor: "#FFCA0C",
+    },
+    routeWalkDistanceLong: {
+        backgroundColor: "#F78B00",
     },
     routeList: {
         position: "relative",
+        padding: 0,
         "&::after": {
             content: "''",
             width: "4px",
@@ -37,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
             position: "absolute",
             top: "50%",
             left: 63,
-            transform: "translateY(-50%)",
+            transform: "translateY(-62%)",
         },
     },
     routeListItem: {
@@ -45,9 +63,6 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: "75px",
         position: "relative",
         cursor: "pointer",
-        "&:hover": {
-            backgroundColor: "#F1F1F1",
-        },
         "&::before": {
             content: "''",
             width: "10px",
@@ -56,9 +71,9 @@ const useStyles = makeStyles((theme) => ({
             border: "2px solid #054752",
             borderRadius: "50%",
             position: "absolute",
-            top: "50%",
+            top: "35%",
             left: 60,
-            transform: "translateY(-50%)",
+            transform: "translateY(-35%)",
             zIndex: 99,
         },
     },
@@ -70,36 +85,15 @@ const useStyles = makeStyles((theme) => ({
         left: 0,
     },
     routeListItemText: {
+        margin: 0,
         "& .MuiTypography-root": {
             fontWeight: 600,
             color: "#054752",
         },
     },
-    arrowIcon: {
-        fontSize: 16,
-        color: "#708C91",
-    },
-    passengerText: {
+    feeText: {
         fontWeight: 600,
-        color: "#708c91",
-    },
-    publicationList: {},
-    publicationListItem: {
-        width: "100%",
-        padding: "10px 16px",
-        position: "relative",
-        cursor: "pointer",
-        "&:hover": {
-            width: "100%",
-            backgroundColor: "#F1F1F1",
-        },
-    },
-    publicationListItemText: {
-        "& .MuiTypography-root": {
-            fontWeight: 600,
-            color: "#054752",
-            fontSize: 18,
-        },
+        color: "#054752",
     },
 }));
 

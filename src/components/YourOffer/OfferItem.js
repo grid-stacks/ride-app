@@ -18,7 +18,7 @@ const OfferItem = ({ offer }) => {
     return (
         <Card
             className={classes.rideItem}
-            onClick={() => history.push(`/${offer.id}`)}
+            onClick={() => history.push(`/offer/${offer.id}`)}
         >
             <CardContent className={classes.rideItemContent}>
                 <Typography variant="h6" className={classes.rideItemTimeDate}>

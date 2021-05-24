@@ -3,6 +3,7 @@ import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import YourOffer from "./pages/YourOffer";
 import SingleOffer from "./pages/SingleOffer";
+import RideSharing from "./pages/RideSharing";
 
 const App = () => {
     return (
@@ -10,7 +11,8 @@ const App = () => {
             <CssBaseline />
             <Switch>
                 <Route exact path="/" component={YourOffer} />
-                <Route exact path="/:id" component={SingleOffer} />
+                <Route exact path="/offer/:id" component={SingleOffer} />
+                <Route exact path="/ride-sharing" component={RideSharing} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,11 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     title: {
         textAlign: "center",
         fontWeight: "bold",
         color: "#054752",
-        "@media(max-width: 767px)": {
+        [theme.breakpoints.down("xs")]: {
             textAlign: "left",
         },
     },
@@ -63,6 +63,6 @@ const useStyles = makeStyles({
             fontSize: 18,
         },
     },
-});
+}));
 
 export default useStyles;
