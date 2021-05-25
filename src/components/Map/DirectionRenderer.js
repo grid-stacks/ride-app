@@ -30,7 +30,7 @@ const MapDirectionsRenderer = ({ places }) => {
 				}
 			}
 		);
-	});
+	}, []);
 
 	if (error) {
 		return <h1>{error}</h1>;
