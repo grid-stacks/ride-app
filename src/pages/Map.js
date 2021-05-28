@@ -50,6 +50,12 @@ const Map = () => {
 	const [totalTime, setTotalTime] = useState(null);
 	const [totalDistance, setTotalDistance] = useState(null);
 
+	const [middlePlaces, setMiddlePlace] = useState([]);
+
+	const handleMiddlePlaces = () => {
+		setMiddlePlace([...middlePlaces, {}]);
+	};
+
 	const mapRef = React.useRef();
 	const onMapLoad = React.useCallback((map) => {
 		mapRef.current = map;
@@ -65,8 +71,25 @@ const Map = () => {
 
 	return (
 		<>
-			<Search panTo={panTo} setMarker={setFromMarker} />
-			<Search panTo={panTo} setMarker={setToMarker} />
+			{console.log(middlePlaces)}
+			<button onClick={handleMiddlePlaces}>Add</button>
+			<Search panTo={panTo} setMarker={setFromMarker} key={1} />
+			{middlePlaces.length
+				? middlePlaces.map((m, i) => (
+						<Search
+							panTo={panTo}
+							setMarker={setMiddlePlace}
+							key={i + 1}
+							position={i}
+							middlePlaces={middlePlaces}
+						/>
+				  ))
+				: null}
+			<Search
+				panTo={panTo}
+				setMarker={setToMarker}
+				key={middlePlaces.length + 2}
+			/>
 			<br />
 			{totalDistance ? <div>Total distance: {totalDistance}</div> : null}
 			{totalTime ? (
@@ -91,9 +114,27 @@ const Map = () => {
 						position={{ lat: fromMarker.lat, lng: fromMarker.lng }}
 					/>
 				) : null}
+
+				{middlePlaces && middlePlaces.length
+					? middlePlaces.map((m, i) => (
+							<>
+								{m.lat ? (
+									<Marker
+										key={i + 1}
+										position={{
+											lat: m.lat,
+											lng: m.lng,
+										}}
+									/>
+								) : null}
+								{console.log(m)}
+							</>
+					  ))
+					: null}
+
 				{toMarker && toMarker.lat ? (
 					<Marker
-						key={2}
+						key={middlePlaces.length + 2}
 						position={{ lat: toMarker.lat, lng: toMarker.lng }}
 					/>
 				) : null}
@@ -116,7 +157,7 @@ const Map = () => {
 							}}
 						/>
 						<MapDirectionsRenderer
-							places={[fromMarker, toMarker]}
+							places={[fromMarker, ...middlePlaces, toMarker]}
 						/>
 					</>
 				) : null}
@@ -127,7 +168,7 @@ const Map = () => {
 
 export default Map;
 
-export const Search = ({ panTo, setMarker }) => {
+export const Search = ({ panTo, setMarker, position, middlePlaces }) => {
 	const {
 		ready,
 		value,
@@ -149,7 +190,13 @@ export const Search = ({ panTo, setMarker }) => {
 			const results = await getGeocode({ address });
 			const { lat, lng } = await getLatLng(results[0]);
 			panTo({ lat, lng });
-			setMarker({ lat, lng });
+
+			if (middlePlaces && middlePlaces.length) {
+				middlePlaces[position] = { lat, lng };
+				setMarker(middlePlaces);
+			} else {
+				setMarker({ lat, lng });
+			}
 		} catch (error) {
 			console.log("😱 Error: ", error);
 		}
