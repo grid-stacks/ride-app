@@ -20,6 +20,7 @@ const MapDirectionsRenderer = ({ places }) => {
 				destination: destination,
 				travelMode: "DRIVING",
 				waypoints: waypoints,
+				provideRouteAlternatives: true,
 			},
 			(result, status) => {
 				console.log(result);
@@ -35,7 +36,21 @@ const MapDirectionsRenderer = ({ places }) => {
 	if (error) {
 		return <h1>{error}</h1>;
 	}
-	return directions && <DirectionsRenderer directions={directions} />;
+	return (
+		<>
+			{directions &&
+				directions.routes &&
+				directions.routes.length &&
+				directions.routes.map((_, i) => (
+					<DirectionsRenderer
+						directions={directions}
+						routeIndex={i}
+						panel={document.getElementById("right-panel")}
+					/>
+				))}
+			<div id="right-panel"></div>
+		</>
+	);
 };
 
 export default MapDirectionsRenderer;

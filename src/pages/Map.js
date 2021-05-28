@@ -147,7 +147,7 @@ const Map = () => {
 								travelMode: "DRIVING",
 							}}
 							callback={(response) => {
-								// console.log(response);
+								console.log(response);
 								setTotalTime(
 									response.rows[0].elements[0].duration.text
 								);
