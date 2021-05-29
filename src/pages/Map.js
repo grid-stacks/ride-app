@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
 	GoogleMap,
 	DistanceMatrixService,
@@ -46,6 +46,9 @@ const Map = () => {
 		lng: -38.523,
 	});
 
+	const fromRef = useRef(null);
+	const toRef = useRef(null);
+
 	const [fromMarker, setFromMarker] = useState({});
 	const [toMarker, setToMarker] = useState({});
 	const [totalTime, setTotalTime] = useState(null);
@@ -81,6 +84,10 @@ const Map = () => {
 				fromMarker={fromMarker}
 				toMarker={toMarker}
 				key={1}
+				ref={fromRef}
+				fromRef={fromRef}
+				toRef={toRef}
+				type="from"
 			/>
 			{middlePlaces.length
 				? middlePlaces.map((m, i) => (
@@ -100,6 +107,10 @@ const Map = () => {
 				fromMarker={fromMarker}
 				toMarker={toMarker}
 				key={middlePlaces.length + 2}
+				ref={toRef}
+				fromRef={fromRef}
+				toRef={toRef}
+				type="to"
 			/>
 			<br />
 			{totalDistance ? <div>Total distance: {totalDistance}</div> : null}
@@ -191,6 +202,9 @@ export const Search = ({
 	toMarker,
 	position,
 	middlePlaces,
+	fromRef,
+	toRef,
+	type,
 }) => {
 	const {
 		ready,
@@ -211,6 +225,12 @@ export const Search = ({
 		if (Object.keys(fromMarker).length && Object.keys(toMarker).length) {
 			setMarker({});
 			otherMarker({});
+
+			if (type === "from") {
+				toRef.current = null;
+			} else if (type === "to") {
+				fromRef.current = null;
+			}
 		}
 
 		try {
